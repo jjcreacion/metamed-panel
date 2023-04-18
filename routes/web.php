@@ -37,4 +37,11 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dash', [ControllerUser::class,'index']);
+    Route::post('/deleteuser',[ControllerUser::class,'destroy']);
+    Route::post('/getuser',[ControllerUser::class,'getuser']);
+    Route::post('/updateuser',[ControllerUser::class,'update']);
+    Route::post('/mostrardatos/{id}',[ControllerUser::class,'mostrardatos']);
+    Route::post('/allusers',[ControllerUser::class,'allusers']);
 });
+
+
