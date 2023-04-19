@@ -17,8 +17,8 @@ $cont = 1;
 @stop
 
 @section('content')
-<meta name="csrf-token" content="{{ csrf_token() }}">
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <table id="tableUsers" class="table table-striped" style="width:100%">
     <thead>
         <tr>
@@ -55,8 +55,6 @@ $cont = 1;
         </tr>      
         </tfoot>
     </table>   
-
-
 
 <!-- Modal Editar -->
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -125,120 +123,7 @@ $cont = 1;
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        
-        $(document).ready(function () {
-          
-          $('#tableUsers').DataTable({
-            "ajax":{
-              "url":"/allusers",
-              "dataSrc":"",
-            },
-            "columns":[
-
-            ]
-          });
-          
-          $('#tableUsers').DataTable();
-
-          $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-          });
-
-        });
-
-        mostrarDatos(id){
-          location.href="mostrardatos/"+id;
-        }
-
-        function confirmar(user) {
-          var ModalEdit = new bootstrap.Modal(modalDelete, {}).show();
-          $('#userDelete').val(user);
-        }
-
-        function cargarDatos(user) {
-          $('#userEdit').val(user);
-          $('#email').val('');
-          $("#password").val('');
-          var ModalEdit = new bootstrap.Modal(modalEdit, {}).show();
-         
-          $.ajax({
-            type:'POST',
-            url:'/getuser',
-            data: { id: user },
-            dataType: "JSON",
-            success: function (data) {
-                $('#email').val(data.email);
-                $("#password").val('1234567890');
-            },
-            });
-
-       }
-       
-       function editar(){
-        
-        let id = $('#userEdit').val();
-        let email = $('#email').val();
-        let password = $('#password').val();
-
-        $.ajax({
-            type:'POST',
-            url:'/updateuser',
-            data: { id: id, email: email, password: password},
-            }).done(function(res){
-             
-              $("#modalEdit .close").click()
-              if(res){
-                swal({
-                  icon: "success", 
-                  title: "Usuario actualizado con éxito!",
-                  timer: 3000
-                });
-                location.reload();
-              }
-              else{
-                swal({
-                  icon: "error", 
-                  title: "Error al actualizar usuario...",
-                  timer: 3000
-                });
-              }
-            
-
-            });
-       }
-
-        function eliminar(){
-          let temp = $('#userDelete').val(); 
-        
-          $.ajax({
-            type:'POST',
-            url:'/deleteuser',
-            data: { email: temp },
-            }).done(function(res){
-              
-              $("#modalDelete .close").click()
-              if(res){
-                swal({
-                  icon: "success", 
-                  title: "Usuario eliminado con éxito!",
-                  timer: 3000
-                });
-                location.reload();
-              }
-              else{
-                swal({
-                  icon: "error", 
-                  title: "Error en eliminar usuario...",
-                  timer: 3000
-                });
-              }
-            
-            });
-        }
-    </script>
+    <script type="text/javascript" src="/js/user.js"></script>      
 @stop
 
 @section('css')

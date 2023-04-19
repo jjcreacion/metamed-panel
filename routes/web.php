@@ -41,7 +41,7 @@ Route::middleware([
     Route::post('/getuser',[ControllerUser::class,'getuser']);
     Route::post('/updateuser',[ControllerUser::class,'update']);
     Route::post('/mostrardatos/{id}',[ControllerUser::class,'mostrardatos']);
-    Route::post('/allusers',[ControllerUser::class,'allusers']);
+    Route::get('/allusers',[ControllerUser::class,'allusers']);
 });
 
 

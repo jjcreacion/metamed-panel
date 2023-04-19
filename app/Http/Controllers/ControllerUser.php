@@ -55,14 +55,38 @@ class ControllerUser extends Controller
         }
     }
 
-    public function allusers(Request $request){
-        
-        try {
+    public function allusers(){ 
+       
+        $data = [
+            'uid' => '9uywhy33',
+            'email' => 'jjcreacion@gmail.com',
+            'date' => '12-09',
+        ];
+
+        echo json_encode($data);
+
+/* 
+        //echo json_encode($data);
+        //return datatables()->collection($data)->toJson();
+        try { 
             $users = $this->auth->listUsers($defaultMaxResults = 1000, $defaultBatchSize = 1000);
-            echo json_encode($users);
+            foreach ($users as $user ){
+                $data[]->uid = "1";
+                $data[]->email = $user->email;
+                $data[]->date = $user->metadata->createdAt->date;  
+            }*/
+            /*$data->uid = $users->uid;
+            $data->email = $users->uid;
+            $data->date = $users->metadata->createdAt->date;
+            
+           // echo json_encode($data);
+            return datatables()->collection($data)->toJson();
+
         }catch (\Kreait\Firebase\Exception\Auth\UserNotFound $e) {
             echo $e->getMessage();
-        }
+        } 
+        return datatables()->collection($data)->toJson();*/
+       
     }
 
     public function update(Request $request){
