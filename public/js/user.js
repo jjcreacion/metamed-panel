@@ -4,11 +4,18 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
-
+      
+      cargarListado();
+      
       $('#tableUsers').DataTable();    
-
   });
 
+  function detalles(user){
+
+    $('#email').val(user);
+
+    var ModalDetail = new bootstrap.Modal(modalDetail, {}).show();    
+  }
 
   function confirmar(user) {
     var ModalEdit = new bootstrap.Modal(modalDelete, {}).show();
@@ -19,8 +26,7 @@ $(document).ready(function () {
     $('#userEdit').val(user);
     $('#email').val('');
     $("#password").val('');
-    var ModalEdit = new bootstrap.Modal(modalEdit, {}).show();
-   
+    
     $.ajax({
       type:'POST',
       url:'/getuser',
@@ -32,6 +38,7 @@ $(document).ready(function () {
       },
       });
 
+      var ModalEdit = new bootstrap.Modal(modalEdit, {}).show();
  }
  
  function editar(){

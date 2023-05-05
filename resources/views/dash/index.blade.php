@@ -40,8 +40,8 @@ $cont = 1;
                 <i class="fa fa-lg fa-fw fa-pen"></i></button>
                 <button class="btn btn-xs btn-default text-danger mx-1 shadow" id='{{ $data["email"] }}' onclick="confirmar(this.id)" title="Delete" data-toggle="modal" >
                 <i class="fa fa-lg fa-fw fa-trash"></i></button>
-                <button class="btn btn-xs btn-default text-teal mx-1 shadow" id='{{ $data["uid"] }}' onclick="mostrarDatos(this.id)" title="Details">
-                <i class="fa fa-lg fa-fw fa-eye"></i></button>  
+                <button class="btn btn-xs btn-default text-teal mx-1 shadow" id='{{ $data["email"] }}' onclick="detalles(this.id)" title="Details" data-toggle="modal" data-target="#modalDetail">
+                <i class="fa fa-lg fa-fw fa-eye"></i></button> 
                 </nobr>
             </tr>
         @endforeach
@@ -56,7 +56,8 @@ $cont = 1;
         </tfoot>
     </table>   
 
-<!-- Modal Editar -->
+ <!-- Modal Editar -->
+
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
   <form>
@@ -69,7 +70,7 @@ $cont = 1;
       </div>
       <div class="modal-body">
       <div class="form-group">
-            <label for="exampleInputEmail1">UID</label>
+            <label for="exampleInputEmail1">ID</label>
             <input type="email" class="form-control" id="userEdit" aria-describedby="emailHelp" placeholder="Enter email" disabled>
         </div>
         <div class="form-group">    
@@ -90,6 +91,34 @@ $cont = 1;
   </div>
 </div>    
 
+<!-- Modal Detalles -->
+
+<div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  <form>
+   <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalles de usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div class="form-group">    
+            <label for="exampleInputEmail1">Email/Teléfono</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"  required>
+        </div>
+        <h5 class="modal-title" id="exampleModalLabel">Perfil</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Lista de Videos</h5>
+      </div>  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="editar()">Guardar Cambios</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>    
 <!-- Modal Eliminar -->
 <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
